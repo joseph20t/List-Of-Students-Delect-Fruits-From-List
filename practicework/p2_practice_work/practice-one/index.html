@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Work1</title>
+    <style>
+        body{
+            display: grid;
+            justify-content: center;
+        }
+        /* BONUS */
+        /* ADD STYLE TO YOUR WORK */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NAME OF STUDENTS PER CLASS</h1>
+    </header>
+    <section>
+        <div>
+            <h3>Grade 10</h3>
+            <ol id="grade-10">
+                <!-- TODO 4 -->
+                <!-- YOUR LIST ITEMS GO HERE -->
+            </ol>
+        </div>
+
+        <div>
+            <h3>Grade 11</h3>
+            <ol id="grade-11">
+                <!-- TODO 5 -->
+                <!-- YOUR LIST ITEMS GO HERE -->
+            </ol>
+        </div>
+
+        <div>
+            <h3>Grade 12</h3>
+            <ol id="grade-12">
+                <!-- TODO 6 -->
+                <!-- YOUR LIST ITEMS GO HERE -->
+            </ol>
+        </div>
+    </section>
+
+    <script>
+        // TODO 3
+        // MAKE A GET REQUEST HERE AND DISPLAY THE RESPONSE IN THE LIST ELEMENTS ABOVE
+        function studentNames() {
+        let grade10data = document.getElementById('grade-10');
+        let grade11data = document.getElementById('grade-11');
+        let grade12data = document.getElementById('grade-12');
+        fetch('/names')
+        .then(response => response.json())
+        .then(data => {
+            let AllClassData = data.data;
+            let classes_data = Object.assign({}, AllClassData);
+            let grade10_class = Object.values(classes_data ['10th grade'])
+            grade10_class.forEach((ele, index) => {
+                let inserted_class_grade10 = `<li>${ele}</li>`;
+            grade10data.insertAdjacentHTML('beforeend', inserted_class_grade10);
+
+            
+            });
+            //inserting grade 11 in the list
+            let grade11_class = Object.values(classes_data ['11th grade'])
+            grade11_class.forEach((ele, index) => {
+                let  inserted_class_grade11 = `<li>${ele}</li>`;
+                grade11data.insertAdjacentHTML('beforeend',  inserted_class_grade11);
+            })
+
+              //inserting grade 12 in the list
+            let grade12_class = Object.values(classes_data  ['12th grade'])
+            grade12_class.forEach((ele, index) => {
+                let inserted_class_grade12 = `<li>${ele}</li>`;
+                grade12data.insertAdjacentHTML('beforeend', inserted_class_grade12)
+            })
+            
+        })
+
+        .catch(err => {
+            if(err) throw err;
+        })
+        }
+        studentNames();
+    </script>
+</body>
+</html>
