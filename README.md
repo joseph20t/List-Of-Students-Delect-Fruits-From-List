@@ -1,1 +1,1 @@
-# List-Of-Students-Delect-Fruits-From-List
+# List-Of-Students-Delete-Fruits-From-List
